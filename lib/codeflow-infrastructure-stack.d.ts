@@ -1,0 +1,55 @@
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as opensearch from 'aws-cdk-lib/aws-opensearchservice';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as events from 'aws-cdk-lib/aws-events';
+import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as ecr from 'aws-cdk-lib/aws-ecr';
+export interface CodeFlowInfrastructureStackProps extends cdk.StackProps {
+    environmentName: string;
+}
+export declare class CodeFlowInfrastructureStack extends cdk.Stack {
+    readonly vpc: ec2.Vpc;
+    readonly lambdaSecurityGroup: ec2.SecurityGroup;
+    readonly openSearchSecurityGroup: ec2.SecurityGroup;
+    readonly ecsSecurityGroup: ec2.SecurityGroup;
+    readonly usersTable: dynamodb.Table;
+    readonly learningPathsTable: dynamodb.Table;
+    readonly progressTable: dynamodb.Table;
+    readonly llmCacheTable: dynamodb.Table;
+    readonly conversationHistoryTable: dynamodb.Table;
+    readonly knowledgeBaseTable: dynamodb.Table;
+    readonly analyticsTable: dynamodb.Table;
+    readonly interviewSessionsTable: dynamodb.Table;
+    readonly staticAssetsBucket: s3.Bucket;
+    readonly kbDocumentsBucket: s3.Bucket;
+    readonly datasetsBucket: s3.Bucket;
+    readonly openSearchDomain: opensearch.Domain;
+    readonly bedrockKnowledgeBase: cdk.aws_bedrock.CfnKnowledgeBase;
+    readonly bedrockDataSource: cdk.aws_bedrock.CfnDataSource;
+    readonly bedrockKnowledgeBaseRole: iam.Role;
+    readonly restApi: apigateway.RestApi;
+    readonly jwtAuthorizer: apigateway.RequestAuthorizer;
+    readonly sharedDependenciesLayer: lambda.LayerVersion;
+    readonly authFunction: lambda.Function;
+    readonly analysisFunction: lambda.Function;
+    readonly recommendationsFunction: lambda.Function;
+    readonly chatMentorFunction: lambda.Function;
+    readonly scrapingFunction: lambda.Function;
+    readonly interviewSimulatorFunction: lambda.Function;
+    readonly eventBus: events.EventBus;
+    readonly backgroundJobsQueue: sqs.Queue;
+    readonly deadLetterQueue: sqs.Queue;
+    readonly ecsCluster: ecs.Cluster;
+    readonly ecrRepository: ecr.Repository;
+    readonly ecsTaskDefinition: ecs.FargateTaskDefinition;
+    readonly ecsTaskRole: iam.Role;
+    readonly ecsExecutionRole: iam.Role;
+    constructor(scope: Construct, id: string, props: CodeFlowInfrastructureStackProps);
+}

@@ -1,0 +1,12 @@
+# Auth Lambda Function Dependencies
+# These are in addition to the shared layer dependencies
+
+# Password hashing
+bcrypt>=4.1.0
+
+# Note: The following are provided by the shared Lambda layer:
+# - boto3
+# - pydantic
+# - PyJWT
+# - cryptography
+# - aws-xray-sdk

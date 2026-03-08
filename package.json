@@ -1,0 +1,38 @@
+{
+  "name": "codeflow-ai-platform",
+  "version": "1.0.0",
+  "description": "CodeFlow AI Platform - AWS Infrastructure",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd infrastructure && tsc",
+    "watch": "cd infrastructure && tsc -w",
+    "cdk": "cd infrastructure && cdk",
+    "cdk:synth": "cd infrastructure && cdk synth",
+    "cdk:deploy": "cd infrastructure && cdk deploy",
+    "cdk:diff": "cd infrastructure && cdk diff",
+    "cdk:destroy": "cd infrastructure && cdk destroy",
+    "cdk:bootstrap": "cd infrastructure && cdk bootstrap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "infrastructure",
+    "codeflow",
+    "ai"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "aws-cdk": "^2.1109.0",
+    "aws-cdk-lib": "^2.241.0",
+    "constructs": "^10.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
+}
